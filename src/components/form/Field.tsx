@@ -57,16 +57,3 @@ export function Field({
     </div>
   );
 }
-
-/**
- * Atributos ARIA compartidos por los controles: marcan el campo como inválido
- * y lo asocian al texto de ayuda o al mensaje de error correspondiente.
- */
-export function controlAriaProps(id: string, error?: string, hint?: string) {
-  const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
-
-  return {
-    'aria-invalid': error ? true : undefined,
-    'aria-describedby': describedBy,
-  };
-}
