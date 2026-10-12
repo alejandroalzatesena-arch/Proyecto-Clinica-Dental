@@ -1,7 +1,8 @@
 import type { ComponentPropsWithRef } from 'react';
 
 import { cn } from '../../utils/cn';
-import { Field, controlAriaProps } from './Field';
+import { controlAriaProps } from './aria';
+import { Field } from './Field';
 import styles from './Field.module.css';
 
 export interface TextareaFieldProps extends ComponentPropsWithRef<'textarea'> {
