@@ -1,7 +1,6 @@
 import { Quote, Star } from 'lucide-react';
 
 import { testimonials } from '../../data/site';
-import { cn } from '../../utils/cn';
 import { Reveal } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
 import styles from './Testimonials.module.css';

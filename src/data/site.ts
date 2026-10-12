@@ -1,6 +1,5 @@
 import {
   Anchor,
-  Baby,
   Braces,
   Brush,
   Clock,
