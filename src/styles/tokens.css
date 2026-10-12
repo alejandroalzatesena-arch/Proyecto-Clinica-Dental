@@ -1,0 +1,165 @@
+/* ============================================================================
+   tokens.css — Sistema de diseño (Design Tokens)
+   ----------------------------------------------------------------------------
+   Única fuente de verdad para color, tipografía, espaciado, sombras y
+   movimiento. Todo componente consume estas variables para que un cambio
+   global (por ejemplo, cambiar el azul corporativo) se propague solo.
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------------------
+     1. TIPOGRAFÍA
+     Combinación: Playfair Display (display/serif, transmite confianza y
+     trayectoria) + Inter (texto/UI, máxima legibilidad en pantalla).
+     Los tamaños usan clamp() para ser fluidos: no hacen falta media queries.
+     ------------------------------------------------------------------------ */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-display: 'Playfair Display', 'Iowan Old Style', Georgia, 'Times New Roman',
+    serif;
+
+  --fs-xs: 0.8125rem; /* 13px — etiquetas, notas legales */
+  --fs-sm: 0.9375rem; /* 15px — ayudas de formulario, footer */
+  --fs-base: 1.0625rem; /* 17px — cuerpo de texto (cómodo en móvil) */
+  --fs-lg: clamp(1.125rem, 1.5vw, 1.25rem);
+  --fs-xl: clamp(1.25rem, 2vw, 1.5rem);
+  --fs-2xl: clamp(1.5rem, 2.6vw, 1.875rem);
+  --fs-3xl: clamp(1.75rem, 3.4vw, 2.375rem);
+  --fs-4xl: clamp(2.125rem, 4.6vw, 3rem);
+  --fs-5xl: clamp(2.5rem, 6.2vw, 4rem);
+
+  --lh-tight: 1.1;
+  --lh-snug: 1.25;
+  --lh-base: 1.65;
+
+  --ls-tight: -0.02em;
+  --ls-wide: 0.08em; /* para "eyebrows" en mayúsculas */
+
+  /* --------------------------------------------------------------------------
+     2. PALETA DE COLOR
+     Base cian-turquesa (sanitario, limpio, calmado) + verde menta como acento
+     de frescura. Los neutros tiran a frío para reforzar la sensación de
+     higiene. Contrastes verificados AA sobre fondos claros.
+     ------------------------------------------------------------------------ */
+  --clr-ink: #0b1f26; /* Texto principal */
+  --clr-ink-soft: #33505a; /* Texto secundario */
+  --clr-muted: #6b8791; /* Texto terciario / metadatos */
+  --clr-white: #ffffff;
+  --clr-surface: #ffffff; /* Fondo de tarjetas */
+  --clr-surface-alt: #f4f9fa; /* Fondo de secciones alternas */
+  --clr-surface-tint: #e8f4f5; /* Fondo con tinte de marca */
+  --clr-line: #e2edef; /* Bordes y separadores */
+  --clr-line-strong: #cfe1e4;
+
+  /* Escala de marca (primario) */
+  --clr-brand-900: #062a31;
+  --clr-brand-800: #0a3d47;
+  --clr-brand-700: #0b5b69;
+  --clr-brand-600: #0e7c8c;
+  --clr-brand-500: #1598a8;
+  --clr-brand-400: #45b7c4;
+  --clr-brand-300: #8ad4dc;
+  --clr-brand-200: #bee7eb;
+  --clr-brand-100: #e1f4f6;
+  --clr-brand-50: #f1fafb;
+
+  /* Acento menta */
+  --clr-mint-600: #148a72;
+  --clr-mint-500: #26b698;
+  --clr-mint-400: #55cdb2;
+  --clr-mint-100: #dff6ef;
+
+  /* Estados semánticos */
+  --clr-danger: #b3271f;
+  --clr-danger-bg: #fdf3f2;
+  --clr-danger-line: #f3cfcb;
+  --clr-success: #176f47;
+  --clr-success-bg: #eaf8f1;
+  --clr-success-line: #c3e9d5;
+  --clr-star: #e8a33d;
+
+  /* Degradados reutilizables */
+  --grad-brand: linear-gradient(135deg, var(--clr-brand-600) 0%, var(--clr-mint-500) 100%);
+  --grad-brand-soft: linear-gradient(160deg, var(--clr-brand-50) 0%, #ffffff 60%);
+  --grad-ink: linear-gradient(150deg, var(--clr-brand-900) 0%, #0a3d47 55%, #0b5b69 100%);
+  --grad-glass: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.68) 100%
+  );
+
+  /* --------------------------------------------------------------------------
+     3. ESPACIADO (escala base 4px) Y LAYOUT
+     ------------------------------------------------------------------------ */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Aire vertical de las secciones: generoso y fluido */
+  --section-y: clamp(4.5rem, 9vw, 7.5rem);
+  --container: 1200px;
+  --container-narrow: 780px;
+  --header-h: 76px;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+  /* --------------------------------------------------------------------------
+     4. RADIOS, BORDES Y SOMBRAS
+     Sombras suaves y multicapa: dan profundidad sin verse "pegadas".
+     ------------------------------------------------------------------------ */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(9, 45, 54, 0.06);
+  --shadow-sm: 0 2px 8px -2px rgba(9, 45, 54, 0.1), 0 1px 2px rgba(9, 45, 54, 0.05);
+  --shadow-md: 0 14px 32px -14px rgba(9, 45, 54, 0.2), 0 3px 8px rgba(9, 45, 54, 0.05);
+  --shadow-lg: 0 30px 64px -28px rgba(9, 45, 54, 0.3), 0 8px 18px rgba(9, 45, 54, 0.06);
+  --shadow-glow: 0 18px 38px -16px rgba(14, 124, 140, 0.45);
+
+  /* --------------------------------------------------------------------------
+     5. MOVIMIENTO
+     Animaciones sutiles y con aceleración natural (ease-out largo).
+     ------------------------------------------------------------------------ */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur: 280ms;
+  --dur-slow: 620ms;
+
+  /* Capas (z-index) centralizadas para evitar "guerras" de z-index */
+  --z-base: 1;
+  --z-decor: 2;
+  --z-sticky: 40;
+  --z-header: 50;
+  --z-overlay: 60;
+}
+
+/* Respeto por la accesibilidad: si el usuario pide menos movimiento,
+   desactivamos transiciones y animaciones de forma global. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur: 1ms;
+    --dur-slow: 1ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
