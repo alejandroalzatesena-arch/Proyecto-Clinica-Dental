@@ -1,0 +1,240 @@
+/* ============================================================================
+   Hero — portada
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3rem, 6vw, 5rem) clamp(3rem, 6vw, 4.5rem);
+  background:
+    radial-gradient(120% 100% at 85% 0%, var(--clr-brand-50) 0%, transparent 55%),
+    linear-gradient(180deg, #fbfeff 0%, var(--clr-surface) 70%);
+}
+
+/* Halos difusos de fondo */
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+}
+
+.blobOne {
+  width: 34rem;
+  height: 34rem;
+  top: -12rem;
+  right: -8rem;
+  background: radial-gradient(circle, var(--clr-brand-200), transparent 70%);
+}
+
+.blobTwo {
+  width: 26rem;
+  height: 26rem;
+  bottom: -10rem;
+  left: -8rem;
+  background: radial-gradient(circle, var(--clr-mint-100), transparent 70%);
+}
+
+/* ------------------------------- Estructura -------------------------------- */
+.inner {
+  position: relative;
+  z-index: var(--z-decor);
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 4vw, 4.5rem);
+  }
+}
+
+.copy {
+  max-width: 40rem;
+}
+
+.visual {
+  justify-self: center;
+  width: 100%;
+}
+
+/* --------------------------------- Copy ------------------------------------ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-6);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--clr-brand-200);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--clr-brand-700);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: var(--shadow-xs);
+}
+
+/* Punto con latido: transmite "estamos disponibles" */
+.badgeDot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--clr-mint-500);
+}
+
+.badgeDot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--clr-mint-400);
+  animation: pulseRing 2.6s var(--ease-out-soft) infinite;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-5xl);
+  font-weight: 600;
+  line-height: 1.04;
+}
+
+.title em {
+  /* Acento en cursiva del serif: aporta cercanía sin perder elegancia */
+  position: relative;
+  font-style: italic;
+  color: var(--clr-brand-600);
+}
+
+.lead {
+  margin-top: var(--space-6);
+  max-width: 34rem;
+  color: var(--clr-ink-soft);
+  font-size: var(--fs-lg);
+  line-height: 1.65;
+}
+
+/* ---------------------------------- CTAs ----------------------------------- */
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 420px) {
+  .ctas > * {
+    width: 100%;
+  }
+}
+
+/* ------------------------------- Highlights --------------------------------- */
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin: var(--space-8) 0 0;
+}
+
+.highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--clr-ink-soft);
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background-color: var(--clr-mint-100);
+  color: var(--clr-mint-600);
+}
+
+.callLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  color: var(--clr-ink-soft);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease-out-soft);
+}
+
+.callLink strong {
+  color: var(--clr-brand-700);
+}
+
+.callLink:hover {
+  color: var(--clr-brand-700);
+}
+
+/* ------------------------------ Cifras de confianza ------------------------ */
+.statsWrapper {
+  position: relative;
+  z-index: var(--z-decor);
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-line);
+  background-color: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-align: center;
+}
+
+/* Separadores verticales entre cifras (sólo en escritorio) */
+@media (min-width: 768px) {
+  .stat + .stat {
+    border-left: 1px solid var(--clr-line);
+  }
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--clr-brand-700);
+}
+
+.statLabel {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+}
