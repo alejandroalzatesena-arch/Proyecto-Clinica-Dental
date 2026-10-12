@@ -1,0 +1,101 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #eaf1f2;
+  box-shadow: var(--shadow-md);
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Anillo que late sobre el marcador de la clínica */
+.pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulseRing 3.6s var(--ease-out-soft) infinite;
+}
+
+/* Tarjeta de dirección superpuesta al mapa */
+.card {
+  position: absolute;
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background-color: var(--clr-brand-100);
+  color: var(--clr-brand-700);
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  color: var(--clr-muted);
+  min-width: 0;
+}
+
+.address strong {
+  font-size: var(--fs-sm);
+  color: var(--clr-brand-900);
+}
+
+.address span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: var(--clr-brand-600);
+  color: var(--clr-white);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur) var(--ease-out-soft);
+}
+
+.link:hover {
+  background-color: var(--clr-brand-700);
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex-wrap: wrap;
+  }
+
+  .link {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,163 @@
+/* ============================================================================
+   HeroVisual — escena decorativa del hero
+   ========================================================================== */
+
+.scene {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+}
+
+/* Halo circular con degradado de marca */
+.halo {
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.95), transparent 58%),
+    linear-gradient(150deg, var(--clr-brand-100) 0%, var(--clr-mint-100) 55%, #ffffff 100%);
+  box-shadow: inset 0 0 0 1px rgba(14, 124, 140, 0.08);
+}
+
+/* Retícula de puntos muy sutil (textura de fondo) */
+.dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(14, 124, 140, 0.14) 1px, transparent 1px);
+  background-size: 18px 18px;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 12%, transparent 62%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 12%, transparent 62%);
+  opacity: 0.7;
+}
+
+.art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* --------------------------- Animaciones (sutiles) -------------------------
+   Los @keyframes viven en base.css (globales) para poder reutilizarlos desde
+   varios módulos; aquí sólo se aplican con nombres sin hashear.             */
+.tooth {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: softFloat 7s var(--ease-in-out-soft) infinite;
+}
+
+.ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spinSlow 60s linear infinite;
+}
+
+.pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulseRing 4.5s var(--ease-out-soft) infinite;
+}
+
+.sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle 3.4s var(--ease-in-out-soft) infinite;
+  animation-delay: var(--d, 0s);
+}
+
+/* ----------------------------- Tarjetas flotantes -------------------------- */
+.card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--grad-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-md);
+  animation: softFloat 8s var(--ease-in-out-soft) infinite;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  color: var(--clr-ink);
+  font-size: var(--fs-xs);
+}
+
+.cardText strong {
+  font-size: var(--fs-sm);
+  color: var(--clr-brand-800);
+}
+
+.cardText span {
+  color: var(--clr-muted);
+}
+
+.cardIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border-radius: 11px;
+  background: var(--clr-brand-100);
+  color: var(--clr-brand-700);
+}
+
+.cardTech {
+  top: 7%;
+  left: -2%;
+  animation-delay: 0.4s;
+}
+
+.cardRating {
+  bottom: 13%;
+  right: -3%;
+  animation-delay: 1.2s;
+}
+
+.cardStars {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--clr-star);
+}
+
+.cardVisit {
+  bottom: 2%;
+  left: 4%;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--clr-brand-700);
+  gap: var(--space-2);
+  animation-delay: 2s;
+}
+
+/* ------------------------------- Responsive -------------------------------- */
+@media (max-width: 560px) {
+  .cardTech {
+    left: -4%;
+  }
+
+  .cardRating {
+    right: -4%;
+  }
+
+  .cardText span {
+    display: none; /* En pantallas pequeñas, sólo el dato principal */
+  }
+}
+
+/* En móvil muy estrecho reducimos el contenido a una sola tarjeta */
+@media (max-width: 380px) {
+  .cardVisit {
+    display: none;
+  }
+}
