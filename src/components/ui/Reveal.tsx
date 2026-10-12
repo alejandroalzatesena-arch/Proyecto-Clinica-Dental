@@ -53,7 +53,7 @@ export function Reveal({ children, delay = 0, as: Tag = 'div', className }: Reve
     <Tag
       ref={setNode}
       className={cn(styles.reveal, visible && styles.visible, className)}
-      style={{ '--reveal-delay': `${delay}ms` } satisfies CSSVariables}
+      style={{ '--reveal-delay': `${delay}ms` } as CSSVariables}
     >
       {children}
     </Tag>
