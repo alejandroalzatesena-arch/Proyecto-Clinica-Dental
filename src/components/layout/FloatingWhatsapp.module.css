@@ -1,0 +1,56 @@
+/* ============================================================================
+   FloatingWhatsapp — botón de contacto rápido
+   ========================================================================== */
+
+.button {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: var(--z-sticky);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.875rem 1.125rem;
+  border-radius: var(--radius-pill);
+  background-color: #25d366;
+  color: #04331f;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 16px 34px -14px rgba(11, 89, 55, 0.6);
+
+  /* Estado oculto: desplazado y con opacidad 0 */
+  opacity: 0;
+  transform: translateY(18px) scale(0.94);
+  visibility: hidden;
+  transition:
+    opacity var(--dur) var(--ease-out-soft),
+    transform var(--dur) var(--ease-out-soft),
+    visibility var(--dur) var(--ease-out-soft),
+    background-color var(--dur) var(--ease-out-soft);
+}
+
+.buttonVisible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+.button:hover {
+  background-color: #1fbe5b;
+  transform: translateY(-3px);
+}
+
+/* En móvil se muestra como burbuja circular para no ocupar pantalla */
+@media (max-width: 520px) {
+  .label {
+    display: none;
+  }
+
+  .button {
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    justify-content: center;
+  }
+}
