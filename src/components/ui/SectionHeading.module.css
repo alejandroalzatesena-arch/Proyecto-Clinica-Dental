@@ -1,0 +1,50 @@
+.wrapper {
+  max-width: 46rem;
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.center :global(.eyebrow) {
+  /* El eyebrow centrado no necesita la línea decorativa a la izquierda */
+  padding-inline: var(--space-1);
+}
+
+.title {
+  font-size: var(--fs-4xl);
+}
+
+.description {
+  margin-top: var(--space-5);
+  max-width: 40rem;
+  color: var(--clr-ink-soft);
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+}
+
+.center .description {
+  margin-inline: auto;
+}
+
+/* --------------------------- Sobre fondo oscuro ---------------------------- */
+.invert .title {
+  color: var(--clr-white);
+}
+
+.invert .description {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.invert :global(.eyebrow) {
+  color: var(--clr-brand-200);
+}
+
+.invert :global(.eyebrow)::before {
+  background: var(--clr-brand-300);
+}

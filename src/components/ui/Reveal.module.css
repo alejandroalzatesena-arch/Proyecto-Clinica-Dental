@@ -1,0 +1,25 @@
+/* Animación de aparición: fade + desplazamiento corto (18px). */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out-soft) var(--reveal-delay, 0ms),
+    transform var(--dur-slow) var(--ease-out-soft) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+  /* Libera la capa de composición una vez terminada la animación */
+  will-change: auto;
+}
+
+/* Con movimiento reducido, el contenido se ve siempre (sin transición). */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
