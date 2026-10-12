@@ -1,7 +1,8 @@
 {
   "name": "clinica-dental",
+  "description": "Landing page de la Clínica Dental Lumina: React 19, TypeScript y CSS moderno, con formulario de citas validado.",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
