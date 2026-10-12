@@ -1,0 +1,348 @@
+/* ============================================================================
+   Header — barra informativa + cabecera sticky + menú móvil
+   ========================================================================== */
+
+/* --------------------------- Barra informativa ----------------------------- */
+.topbar {
+  background-color: var(--clr-brand-900);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--fs-xs);
+}
+
+.topbarInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  min-height: 40px;
+  flex-wrap: wrap;
+}
+
+.topbarItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.topbarItem:hover {
+  color: var(--clr-white);
+}
+
+/* En pantallas pequeñas la barra se oculta para no robar altura útil */
+@media (max-width: 860px) {
+  .topbar {
+    display: none;
+  }
+}
+
+/* --------------------------------- Header ---------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--dur) var(--ease-out-soft),
+    border-color var(--dur) var(--ease-out-soft),
+    box-shadow var(--dur) var(--ease-out-soft);
+}
+
+/* Estado al hacer scroll: efecto cristal + sombra sutil */
+.scrolled {
+  background-color: rgba(255, 255, 255, 0.88);
+  border-bottom-color: var(--clr-line);
+  box-shadow: 0 10px 30px -22px rgba(9, 45, 54, 0.45);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: var(--header-h);
+}
+
+.brand {
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+
+/* ---------------------------- Navegación central --------------------------- */
+.nav {
+  display: none;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+}
+
+.navLink {
+  position: relative;
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  color: var(--clr-ink-soft);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--dur) var(--ease-out-soft);
+}
+
+/* Subrayado animado que aparece en hover y en el enlace activo */
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  width: 0;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--grad-brand);
+  transform: translateX(-50%);
+  transition: width var(--dur) var(--ease-out-soft);
+}
+
+.navLink:hover {
+  color: var(--clr-brand-700);
+}
+
+.navLink:hover::after {
+  width: 40%;
+}
+
+.navLinkActive {
+  color: var(--clr-brand-700);
+  font-weight: 600;
+}
+
+.navLinkActive::after {
+  width: 40%;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: block;
+  }
+}
+
+/* --------------------------------- Acciones -------------------------------- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 0 0 auto;
+}
+
+.phone {
+  display: none;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background-color var(--dur) var(--ease-out-soft);
+}
+
+.phone:hover {
+  background-color: var(--clr-brand-50);
+}
+
+.phoneIcon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background-color: var(--clr-brand-100);
+  color: var(--clr-brand-700);
+}
+
+.phoneText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.phoneLabel {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+}
+
+.phoneNumber {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--clr-brand-800);
+}
+
+@media (min-width: 1024px) {
+  .phone {
+    display: inline-flex;
+  }
+}
+
+/* El CTA principal se oculta en móvil: allí vive el menú desplegable */
+.cta {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .cta {
+    display: inline-flex;
+  }
+}
+
+/* ------------------------------ Botón hamburguesa -------------------------- */
+.burger {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid var(--clr-line-strong);
+  background-color: var(--clr-surface);
+  color: var(--clr-brand-800);
+  transition:
+    background-color var(--dur) var(--ease-out-soft),
+    transform var(--dur) var(--ease-out-soft);
+}
+
+.burger:hover {
+  background-color: var(--clr-brand-50);
+}
+
+.burger:active {
+  transform: scale(0.96);
+}
+
+@media (min-width: 1024px) {
+  .burger {
+    display: none;
+  }
+}
+
+/* ------------------------------- Menú móvil -------------------------------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background-color: rgba(6, 42, 49, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--dur) var(--ease-out-soft),
+    visibility var(--dur) var(--ease-out-soft);
+}
+
+.backdropOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: calc(var(--z-overlay) + 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-8);
+  width: min(88vw, 380px);
+  height: 100dvh;
+  padding: var(--space-24) var(--space-6) var(--space-8);
+  background-color: var(--clr-surface);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(105%);
+  transition: transform var(--dur) var(--ease-out-soft);
+  overflow-y: auto;
+}
+
+.drawerOpen {
+  transform: none;
+}
+
+.drawerList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.drawerLink {
+  display: block;
+  padding: var(--space-4) var(--space-2);
+  border-bottom: 1px solid var(--clr-line);
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  color: var(--clr-brand-900);
+  text-decoration: none;
+  transition:
+    color var(--dur) var(--ease-out-soft),
+    padding-left var(--dur) var(--ease-out-soft);
+}
+
+.drawerLink:hover {
+  color: var(--clr-brand-600);
+  padding-left: var(--space-4);
+}
+
+.drawerFooter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.drawerPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  color: var(--clr-brand-700);
+  text-decoration: none;
+}
+
+.drawerSocials {
+  display: flex;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.drawerSocial {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-line);
+  color: var(--clr-brand-700);
+  transition:
+    background-color var(--dur) var(--ease-out-soft),
+    color var(--dur) var(--ease-out-soft);
+}
+
+.drawerSocial:hover {
+  background-color: var(--clr-brand-600);
+  border-color: var(--clr-brand-600);
+  color: var(--clr-white);
+}
+
+/* En escritorio el menú móvil nunca debe verse */
+@media (min-width: 1024px) {
+  .drawer,
+  .backdrop {
+    display: none;
+  }
+}
