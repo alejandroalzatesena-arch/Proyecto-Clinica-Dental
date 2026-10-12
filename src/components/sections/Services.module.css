@@ -1,0 +1,195 @@
+/* ============================================================================
+   Services — rejilla de tratamientos
+   ========================================================================== */
+
+.section {
+  background:
+    linear-gradient(180deg, var(--clr-surface-alt) 0%, var(--clr-surface) 100%);
+  border-block: 1px solid var(--clr-line);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  margin: var(--space-12) 0 0;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.cardWrapper {
+  display: flex;
+}
+
+/* --------------------------------- Tarjeta --------------------------------- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-line);
+  background-color: var(--clr-surface);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  transition:
+    transform var(--dur) var(--ease-out-soft),
+    box-shadow var(--dur) var(--ease-out-soft),
+    border-color var(--dur) var(--ease-out-soft);
+}
+
+/* Barra superior de marca que se despliega al pasar el ratón */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--grad-brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out-soft);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--clr-brand-200);
+  box-shadow: var(--shadow-md);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: var(--space-5);
+  border-radius: 16px;
+  background: linear-gradient(150deg, var(--clr-brand-100), var(--clr-mint-100));
+  color: var(--clr-brand-700);
+  box-shadow: inset 0 0 0 1px rgba(14, 124, 140, 0.12);
+  transition: transform var(--dur) var(--ease-out-soft);
+}
+
+.card:hover .icon {
+  transform: translateY(-2px) scale(1.04);
+}
+
+.cardTitle {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+}
+
+.cardSummary {
+  margin-top: var(--space-3);
+  color: var(--clr-ink-soft);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+/* -------------------------------- Bullets ---------------------------------- */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-5) 0 0;
+  padding-top: var(--space-5);
+  border-top: 1px dashed var(--clr-line-strong);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--clr-ink-soft);
+}
+
+.feature svg {
+  flex: 0 0 auto;
+  color: var(--clr-mint-500);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--clr-brand-700);
+  text-decoration: none;
+}
+
+.more svg {
+  transition: transform var(--dur) var(--ease-out-soft);
+}
+
+.more:hover svg {
+  transform: translateX(4px);
+}
+
+/* ------------------------------ Banda de cierre ---------------------------- */
+.band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-brand-100);
+  background:
+    radial-gradient(90% 140% at 0% 0%, var(--clr-brand-50) 0%, transparent 60%),
+    var(--clr-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.bandText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 34rem;
+}
+
+.bandText strong {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  color: var(--clr-brand-900);
+}
+
+.bandText span {
+  color: var(--clr-ink-soft);
+  font-size: var(--fs-sm);
+}
+
+.bandActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@media (max-width: 480px) {
+  .bandActions {
+    width: 100%;
+  }
+
+  .bandActions > * {
+    width: 100%;
+  }
+}
