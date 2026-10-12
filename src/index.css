@@ -1,0 +1,6 @@
+/* ============================================================================
+   Punto de entrada de estilos.
+   Orden importante: primero los tokens (variables), luego el reset/base.
+   ========================================================================== */
+@import './styles/tokens.css';
+@import './styles/base.css';

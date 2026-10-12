@@ -1,0 +1,13 @@
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+.art {
+  width: 100%;
+  height: auto;
+  /* Sombra suave bajo el retrato, simulando una foto con luz cenital */
+  filter: drop-shadow(0 30px 50px rgba(9, 45, 54, 0.16));
+}

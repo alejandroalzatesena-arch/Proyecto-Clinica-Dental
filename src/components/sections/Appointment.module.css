@@ -1,0 +1,318 @@
+/* ============================================================================
+   Appointment — formulario de cita + información de contacto
+   ========================================================================== */
+
+.section {
+  background: linear-gradient(180deg, var(--clr-surface-alt) 0%, var(--clr-surface) 100%);
+  border-top: 1px solid var(--clr-line);
+}
+
+.layout {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-top: var(--space-12);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+}
+
+/* ------------------------------- Tarjeta del form -------------------------- */
+.formCard {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-line);
+  background-color: var(--clr-surface);
+  box-shadow: var(--shadow-md);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Dos campos por fila a partir de tablet */
+.row {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------------------------- Aviso de errores ----------------------------- */
+.formAlert {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--clr-danger-line);
+  background-color: var(--clr-danger-bg);
+  color: var(--clr-danger);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  animation: fadeUp var(--dur) var(--ease-out-soft);
+}
+
+.formAlert svg {
+  flex: 0 0 auto;
+}
+
+.formNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--clr-muted);
+}
+
+.formNote svg {
+  flex: 0 0 auto;
+  color: var(--clr-mint-600);
+}
+
+.spinner {
+  animation: spinFast 0.9s linear infinite;
+}
+
+/* Mantiene el botón legible mientras envía */
+.form button[disabled] {
+  opacity: 0.75;
+  cursor: progress;
+  transform: none;
+}
+
+/* ------------------------------ Estado de éxito ---------------------------- */
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-6);
+  text-align: center;
+  animation: fadeUp var(--dur-slow) var(--ease-out-soft);
+}
+
+.successIcon {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background-color: var(--clr-success-bg);
+  color: var(--clr-success);
+  box-shadow: 0 0 0 10px rgba(23, 111, 71, 0.06);
+}
+
+.successTitle {
+  font-size: var(--fs-2xl);
+}
+
+.successText {
+  max-width: 34rem;
+  color: var(--clr-ink-soft);
+  font-size: var(--fs-sm);
+}
+
+.successList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 28rem;
+  margin: var(--space-2) 0 0;
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background-color: var(--clr-brand-50);
+  border: 1px solid var(--clr-brand-100);
+  text-align: left;
+  font-size: var(--fs-sm);
+  color: var(--clr-ink-soft);
+}
+
+.successList li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.successList svg {
+  flex: 0 0 auto;
+  color: var(--clr-brand-600);
+}
+
+.successList strong {
+  color: var(--clr-brand-800);
+}
+
+.successActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+/* ------------------------------ Columna info ------------------------------- */
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.infoCard {
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-line);
+  background-color: var(--clr-surface);
+  box-shadow: var(--shadow-xs);
+}
+
+.infoTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--clr-brand-900);
+}
+
+.infoTitle svg {
+  color: var(--clr-brand-600);
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+}
+
+.infoLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  color: inherit;
+  text-decoration: none;
+  transition: background-color var(--dur) var(--ease-out-soft);
+}
+
+.infoLink:hover {
+  background-color: var(--clr-brand-50);
+}
+
+.infoIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background-color: var(--clr-brand-100);
+  color: var(--clr-brand-700);
+}
+
+.infoLink > span:last-child {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+  min-width: 0;
+}
+
+.infoLink strong {
+  font-size: var(--fs-sm);
+  color: var(--clr-brand-800);
+}
+
+.infoLink span span {
+  font-size: var(--fs-xs);
+  color: var(--clr-muted);
+}
+
+/* --------------------------------- Horario --------------------------------- */
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.scheduleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed var(--clr-line);
+  font-size: var(--fs-sm);
+}
+
+.scheduleRow:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.scheduleRow dt {
+  color: var(--clr-ink-soft);
+}
+
+.scheduleRow dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--clr-brand-800);
+}
+
+.scheduleClosed {
+  color: var(--clr-muted);
+  font-weight: 500;
+}
+
+/* --------------------------- Bloque destacado ------------------------------ */
+.infoHighlight {
+  background: linear-gradient(160deg, var(--clr-brand-50) 0%, var(--clr-surface) 70%);
+  border-color: var(--clr-brand-100);
+}
+
+.includes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.includes li {
+  position: relative;
+  padding-left: var(--space-6);
+  font-size: var(--fs-sm);
+  color: var(--clr-ink-soft);
+}
+
+.includes li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+}

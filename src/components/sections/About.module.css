@@ -1,0 +1,183 @@
+/* ============================================================================
+   About — sobre la clínica y la doctora
+   ========================================================================== */
+
+.section {
+  background-color: var(--clr-surface);
+}
+
+.inner {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+}
+
+/* -------------------------------- Visual ----------------------------------- */
+.visual {
+  position: relative;
+  justify-self: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Halo detrás del retrato (se pinta antes que la figura por orden en el DOM) */
+.visual::before {
+  content: '';
+  position: absolute;
+  inset: 8% -6% -6% 8%;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(150deg, var(--clr-brand-100), var(--clr-mint-100));
+  transform: rotate(-3deg);
+}
+
+.experienceCard {
+  position: absolute;
+  bottom: 6%;
+  left: -6%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--grad-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--shadow-md);
+  animation: softFloat 9s var(--ease-in-out-soft) infinite;
+}
+
+.experienceIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--grad-brand);
+  color: var(--clr-white);
+}
+
+.experienceText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.experienceText strong {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  color: var(--clr-brand-800);
+}
+
+.experienceText span {
+  font-size: var(--fs-xs);
+  color: var(--clr-muted);
+}
+
+/* -------------------------------- Contenido -------------------------------- */
+.content {
+  max-width: 40rem;
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  color: var(--clr-ink-soft);
+}
+
+/* ---------------------------------- Cita ----------------------------------- */
+.quote {
+  position: relative;
+  display: flex;
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+  padding: var(--space-5) var(--space-6);
+  border-left: 3px solid var(--clr-brand-400);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background-color: var(--clr-brand-50);
+  color: var(--clr-brand-800);
+}
+
+.quote svg {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  color: var(--clr-brand-400);
+}
+
+.quote p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ------------------------------ Credenciales ------------------------------- */
+.credentials {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-8);
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .credentials {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3) var(--space-5);
+  }
+}
+
+.credential {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--clr-ink-soft);
+}
+
+.credential svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--clr-mint-600);
+}
+
+/* --------------------------------- Firma ----------------------------------- */
+.signature {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--clr-line);
+}
+
+.signatureName {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  color: var(--clr-brand-900);
+}
+
+.signatureRole {
+  font-size: var(--fs-sm);
+  color: var(--clr-ink-soft);
+}
+
+.signatureLicense {
+  font-size: var(--fs-xs);
+  color: var(--clr-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
