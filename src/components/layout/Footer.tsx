@@ -8,13 +8,14 @@ import { Button } from '../ui/Button';
 import { Logo } from '../ui/Logo';
 import styles from './Footer.module.css';
 
+/** Año actual calculado una sola vez (evita llamadas impuras en cada render). */
+const currentYear = new Date().getFullYear();
+
 /**
  * Pie de página completo: datos de contacto, navegación, tratamientos,
  * horarios, mapa, redes sociales y línea legal.
  */
 export function Footer() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className={styles.footer}>
       {/* ------------------------- Banda de urgencias ------------------------- */}
@@ -170,7 +171,7 @@ export function Footer() {
       <div className={styles.bottom}>
         <div className={cn('container', styles.bottomInner)}>
           <p className={styles.copy}>
-            © {year} {clinicInfo.name}. Todos los derechos reservados.
+            © {currentYear} {clinicInfo.name}. Todos los derechos reservados.
           </p>
 
           <ul className={styles.legal}>
