@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ElementType, ReactNode } from 'react';
 
 import type { CSSVariables } from '../../types/css';
@@ -14,29 +14,33 @@ interface RevealProps {
   className?: string;
 }
 
+/** ¿El navegador soporta IntersectionObserver? (constante por entorno) */
+const supportsObserver = typeof IntersectionObserver !== 'undefined';
+
 /**
  * Envuelve contenido y lo muestra con una animación sutil (fade + subida)
- * cuando entra en el viewport. Sólo se anima una vez y, si el navegador no
- * soporta IntersectionObserver, el contenido se muestra directamente.
+ * cuando entra en el viewport.
+ *
+ * Detalles de implementación:
+ *  · usa un `useRef` estable para el nodo (un callback ref nuevo en cada render
+ *    haría que React lo desmontara y remontara constantemente),
+ *  · se anima una sola vez: al entrar, se deja de observar el elemento,
+ *  · si el navegador no soporta IntersectionObserver, el contenido se muestra
+ *    directamente (estado inicial `visible`).
  */
 export function Reveal({ children, delay = 0, as: Tag = 'div', className }: RevealProps) {
-  const [node, setNode] = useState<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
+  const nodeRef = useRef<HTMLElement | null>(null);
+  const [visible, setVisible] = useState(!supportsObserver);
 
   useEffect(() => {
-    if (!node) return;
-
-    if (typeof IntersectionObserver === 'undefined') {
-      setVisible(true);
-      return;
-    }
+    const node = nodeRef.current;
+    if (!node || !supportsObserver) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             setVisible(true);
-            // Animación de una sola pasada: dejamos de observar.
             observer.unobserve(entry.target);
           }
         }
@@ -47,11 +51,11 @@ export function Reveal({ children, delay = 0, as: Tag = 'div', className }: Reve
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [node]);
+  }, []);
 
   return (
     <Tag
-      ref={setNode}
+      ref={nodeRef}
       className={cn(styles.reveal, visible && styles.visible, className)}
       style={{ '--reveal-delay': `${delay}ms` } as CSSVariables}
     >
