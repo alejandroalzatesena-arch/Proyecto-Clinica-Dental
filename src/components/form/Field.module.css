@@ -1,0 +1,164 @@
+/* ============================================================================
+   Estilos compartidos por todos los campos del formulario.
+   Usar un único módulo evita duplicar estados (hover, foco, error).
+   ========================================================================== */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--clr-brand-900);
+}
+
+.required {
+  color: var(--clr-danger);
+}
+
+/* ------------------------- Controles (input/select/textarea) ---------------- */
+.control {
+  width: 100%;
+  padding: 0.8125rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--clr-line-strong);
+  background-color: var(--clr-surface);
+  color: var(--clr-ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+  transition:
+    border-color var(--dur) var(--ease-out-soft),
+    box-shadow var(--dur) var(--ease-out-soft),
+    background-color var(--dur) var(--ease-out-soft);
+}
+
+.control::placeholder {
+  color: #97b1b9;
+}
+
+.control:hover {
+  border-color: var(--clr-brand-300);
+}
+
+/* Foco visible y coherente con la marca */
+.control:focus {
+  outline: none;
+  border-color: var(--clr-brand-500);
+  box-shadow: 0 0 0 4px rgba(21, 152, 168, 0.14);
+}
+
+/* ------------------------------- Estado error ------------------------------- */
+.hasError .control {
+  border-color: var(--clr-danger-line);
+  background-color: var(--clr-danger-bg);
+}
+
+.hasError .control:hover {
+  border-color: var(--clr-danger);
+}
+
+.hasError .control:focus {
+  border-color: var(--clr-danger);
+  box-shadow: 0 0 0 4px rgba(179, 39, 31, 0.12);
+}
+
+/* ------------------------------- Textos de ayuda ---------------------------- */
+.hint {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--clr-muted);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--clr-danger);
+  animation: fadeUp var(--dur) var(--ease-out-soft);
+}
+
+.error svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+/* ------------------------------- Select ------------------------------------ */
+.selectWrapper {
+  position: relative;
+  display: flex;
+}
+
+.select {
+  appearance: none;
+  padding-right: 2.75rem;
+  cursor: pointer;
+}
+
+/* Chevron dibujado en CSS: no requiere imágenes ni iconos extra */
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  display: grid;
+  place-items: center;
+  color: var(--clr-brand-600);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* ------------------------------- Textarea ---------------------------------- */
+.textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+/* Contador de caracteres */
+.counter {
+  align-self: flex-end;
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--clr-muted);
+}
+
+/* ------------------------------ Checkbox ----------------------------------- */
+.checkboxRow {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.checkbox {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--clr-brand-600);
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: var(--fs-xs);
+  line-height: 1.55;
+  color: var(--clr-ink-soft);
+}
+
+.checkboxLabel a {
+  color: var(--clr-brand-700);
+  font-weight: 600;
+}
+
+.hasError .checkbox {
+  outline: 2px solid var(--clr-danger-line);
+  outline-offset: 2px;
+}
