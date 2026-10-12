@@ -113,20 +113,20 @@ export function HeroVisual() {
         <g className={styles.sparkles} fill="#1598a8">
           <path
             className={styles.sparkle}
-            style={{ '--d': '0s' } satisfies CSSVariables}
+            style={{ '--d': '0s' } as CSSVariables}
             transform="translate(400 148) scale(1.35)"
             d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"
           />
           <path
             className={styles.sparkle}
-            style={{ '--d': '0.9s' } satisfies CSSVariables}
+            style={{ '--d': '0.9s' } as CSSVariables}
             transform="translate(120 336) scale(0.95)"
             d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"
             fill="#26b698"
           />
           <path
             className={styles.sparkle}
-            style={{ '--d': '1.7s' } satisfies CSSVariables}
+            style={{ '--d': '1.7s' } as CSSVariables}
             transform="translate(392 386) scale(0.7)"
             d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"
             fill="#45b7c4"
